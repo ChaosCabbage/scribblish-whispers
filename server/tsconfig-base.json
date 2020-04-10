@@ -9,6 +9,5 @@
     "strict": true,
     "strictNullChecks": true
   },
-  "lib": ["es2015"],
-  "include": ["src"]
+  "lib": ["es2015"]
 }

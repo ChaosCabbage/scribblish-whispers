@@ -3,5 +3,5 @@
   "compilerOptions": {
     "outDir": "../build/game-logic"
   },
-  "include": ["src"]
+  "include": ["src", "../../shared"]
 }

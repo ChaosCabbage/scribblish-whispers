@@ -1,0 +1,22 @@
+* {
+  box-sizing: border-box;
+}
+
+.challenge {
+  display: flex;
+  flex-direction: column;
+}
+
+.caption {
+  flex: 1;
+}
+
+.finish {
+  flex: 1;
+}
+
+@media screen and (min-width: 1000px) {
+  .challenge {
+    flex-direction: row;
+  }
+}
