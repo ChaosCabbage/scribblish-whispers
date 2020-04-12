@@ -11,11 +11,20 @@
   flex: 1;
 }
 
-.finish {
+.preview {
   flex: 1;
 }
 
-@media screen and (min-width: 1000px) {
+img.previewImage {
+  vertical-align: middle;
+}
+
+button.finished {
+  height: 64px;
+  vertical-align: middle;
+}
+
+@media screen and (min-width: 120vh) {
   .challenge {
     flex-direction: row;
   }
