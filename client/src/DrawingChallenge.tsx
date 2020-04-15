@@ -4,7 +4,7 @@ import { Board } from "./Board";
 import { CountdownTimer } from "./Countdown";
 import "./DrawingChallenge.css";
 
-interface Props {
+export interface DrawingChallengeProps {
   challenge: Messages.DrawChallenge;
   timeLimitSeconds: number;
   onDrawingChange?(pngURL: string): void;
@@ -16,7 +16,7 @@ export const DrawingChallenge = ({
   challenge,
   onDrawingChange,
   onFinish,
-}: Props) => {
+}: DrawingChallengeProps) => {
   const [png, setPng] = useState("");
   const onChange = useCallback(
     (dataURL: string) => {

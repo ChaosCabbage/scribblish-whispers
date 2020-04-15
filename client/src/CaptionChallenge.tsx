@@ -2,7 +2,7 @@ import React, { useCallback, ChangeEvent } from "react";
 import * as Messages from "@scrawl.io/game-messages";
 import { CountdownTimer } from "./Countdown";
 
-interface Props {
+export interface CaptionChallengeProps {
   challenge: Messages.CaptionChallenge;
   timeLimitSeconds: number;
   onCaptionChange?(caption: string): void;
@@ -14,7 +14,7 @@ export const CaptionChallenge = ({
   timeLimitSeconds,
   onCaptionChange,
   onFinish,
-}: Props) => {
+}: CaptionChallengeProps) => {
   const onChange = useCallback(
     (event: ChangeEvent<HTMLInputElement>) =>
       onCaptionChange?.(event.target.value),
@@ -36,9 +36,9 @@ export const CaptionChallenge = ({
         </div>
       </section>
       <form onSubmit={submit}>
-        <CountdownTimer startSeconds={timeLimitSeconds} />
         <label htmlFor="answer">What is it?</label>
         <input id="answer" autoFocus onChange={onChange} />
+        <CountdownTimer startSeconds={timeLimitSeconds} />
       </form>
     </article>
   );
