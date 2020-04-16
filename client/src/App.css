@@ -1,1 +1,9 @@
-
+.App {
+  margin: 5px;
+}
+.errorPage {
+  width: 100%;
+  height: 100%;
+  background-color: hotpink;
+  color: indigo;
+}

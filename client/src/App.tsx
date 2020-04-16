@@ -25,6 +25,10 @@ type GameState =
   | {
       type: "results";
       modeProps: Messages.GameResult;
+    }
+  | {
+      type: "error";
+      message: string;
     };
 
 function App({
@@ -41,7 +45,7 @@ function App({
 
   useEffect(() => {
     socket.on("fail", (message: string) => {
-      throw new Error(message);
+      setMode({ type: "error", message });
     });
     socket.on("joined-room", ({ you }: Messages.JoinRoom) => {
       setName(you);
@@ -103,6 +107,13 @@ function App({
         );
       case "results":
         return <Results {...mode.modeProps} />;
+      case "error":
+        return (
+          <article className="errorPage">
+            <h1>A thing went wrong.</h1>
+            <p>{mode.message}</p>
+          </article>
+        );
     }
   };
 
