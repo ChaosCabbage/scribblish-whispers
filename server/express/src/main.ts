@@ -25,8 +25,8 @@ app.get("/games/:gameid", (req, res) => {
 app.use(express.static(clientPath));
 
 io.on("connection", (socket) => {
-  socket.on("join-room", (roomCode: string) => {
-    joinRoom(roomCode, socket);
+  socket.on("join-room", ({ room, name }: { room: string; name?: string }) => {
+    joinRoom(room, socket, name);
   });
 });
 

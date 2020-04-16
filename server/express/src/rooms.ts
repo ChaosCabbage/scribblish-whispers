@@ -11,11 +11,15 @@ export const createRoom = (name: string, io: SocketIO.Server) => {
   currentRooms[name] = new GameRoom(name, io);
 };
 
-export const joinRoom = (room: string, player: SocketIO.Socket) => {
+export const joinRoom = (
+  room: string,
+  player: SocketIO.Socket,
+  name?: string
+) => {
   if (!roomExists(room)) {
     player.emit("fail", "No such room");
     return;
   }
 
-  currentRooms[room].add(player);
+  currentRooms[room].add(player, name);
 };

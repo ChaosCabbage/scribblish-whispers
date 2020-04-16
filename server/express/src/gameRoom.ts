@@ -66,7 +66,7 @@ class PlayerImpl implements Player {
 export class GameRoom {
   constructor(public id: string, private io: SocketIO.Server) {}
 
-  public add(socket: SocketIO.Socket): void {
+  public add(socket: SocketIO.Socket, name?: string): void {
     if (this.started) {
       socket.emit("fail", "The game has already started");
       return;
@@ -74,7 +74,7 @@ export class GameRoom {
 
     socket.join(this.id);
     this.playerIDs.push(socket.id);
-    const newName = this.generateName();
+    const newName = this.generateName(name);
     this.socketIDToName[socket.id] = newName;
 
     socket.emit("joined-room", {
@@ -111,23 +111,25 @@ export class GameRoom {
     });
 
     socket.on("disconnect", () => {
-      if (this.started) {
-        this.emit(
-          "fail",
-          "Somebody disconnected, and I didn't feel like writing the code properly"
-        );
-      }
       delete this.socketIDToName[socket.id];
       this.playerIDs = this.playerIDs.filter((id) => id !== socket.id);
-      this.emitLobbyUpdate();
+      if (!this.started) {
+        this.emitLobbyUpdate();
+      }
     });
   }
 
-  private generateName(): string {
+  private generateName(suggestion?: string): string {
     const { players } = this.lobbyState();
+    if (suggestion && !players.includes(suggestion)) {
+      return suggestion;
+    }
+
+    const base = suggestion ?? "Player";
+
     let i = 1;
     while (true) {
-      const name = `Player#${i}`;
+      const name = `${base}#${i}`;
       if (!players.includes(name)) {
         return name;
       }

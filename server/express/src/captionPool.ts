@@ -32,4 +32,11 @@ export const captionPool = [
   "A T-Rex with a brand new handbag",
   "1950s sex education",
   "Mittens on a kitten",
+  "More melons than you can carry",
+  "Deflating an elephant",
+  "Bottle-feeding a pig",
+  "A model with hobbit feet",
+  "An incontinent horse",
+  "Angry potatoes meeting",
+  "Bodybuilding toast",
 ];
