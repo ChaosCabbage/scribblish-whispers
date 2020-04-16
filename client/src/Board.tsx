@@ -1,4 +1,4 @@
-import React, { useEffect, HTMLProps } from "react";
+import React, { useEffect, HTMLProps, useRef } from "react";
 import "./Board.css";
 import "drawingboard.js/dist/drawingboard.css";
 import "drawingboard.js";
@@ -9,6 +9,7 @@ declare global {
     getImg(): string;
     ev: {
       bind(event: string, callback: () => void): void;
+      unbind(event: string, callback: () => void): void;
     };
   }
   interface Window {
@@ -23,22 +24,34 @@ interface Props extends HTMLProps<HTMLDivElement> {
 }
 
 export const Board = ({ id = "draw", onDrawingChange: onChange }: Props) => {
+  const boardRef = useRef<Board | null>(null);
   useEffect(() => {
-    const board = new window.DrawingBoard.Board(id, {
+    boardRef.current = new window.DrawingBoard.Board(id, {
       webStorage: false,
       size: 20,
     });
+  }, [id]);
+
+  useEffect(() => {
+    if (boardRef.current === null) return;
+    const board = boardRef.current;
 
     const emit = () => {
       onChange(board.getImg());
     };
 
     onChange(board.blankCanvas);
+    const events = ["board:stopDrawing", "board:reset", "board:mouseOut"];
+    events.forEach((event) => {
+      board.ev.bind(event, emit);
+    });
 
-    board.ev.bind("board:stopDrawing", emit);
-    board.ev.bind("board:reset", emit);
-    board.ev.bind("board:mouseOut", emit);
-  }, [id, onChange]);
+    return () => {
+      events.forEach((event) => {
+        board.ev.unbind(event, emit);
+      });
+    };
+  }, [onChange]);
 
   return <div id={id} />;
 };

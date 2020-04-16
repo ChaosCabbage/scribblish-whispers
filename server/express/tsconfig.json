@@ -1,7 +1,17 @@
 {
   "extends": "../tsconfig-base.json",
   "compilerOptions": {
-    "outDir": "../build/express"
+    "outDir": "../build/express",
+    "composite": true,
+    "baseUrl": ".",
+    "paths": {
+      "@scrawl.io/game-messages": ["../../shared/gameMessages"]
+    }
   },
-  "include": ["src"]
+  "include": ["src"],
+  "references": [
+    {
+      "path": "../game-logic"
+    }
+  ]
 }

@@ -1,0 +1,7 @@
+{
+  "compilerOptions": {
+    "outDir": "../build/game-logic",
+    "composite": true
+  },
+  "include": ["src", "../../shared"]
+}

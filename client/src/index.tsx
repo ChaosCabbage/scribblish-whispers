@@ -5,6 +5,8 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import io from "socket.io-client";
 
+localStorage.debug = "*";
+
 const socket =
   process.env.NODE_ENV === "development" ? io("http://localhost:5385") : io();
 
@@ -14,7 +16,7 @@ socket.emit("join-room", roomCode);
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <App roomCode={roomCode} socket={socket} />
   </React.StrictMode>,
   document.getElementById("root")
 );

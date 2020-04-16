@@ -39,6 +39,7 @@ export const CaptionChallenge = ({
         <label htmlFor="answer">What is it?</label>
         <input id="answer" autoFocus onChange={onChange} />
         <CountdownTimer startSeconds={timeLimitSeconds} />
+        <input type="submit" value="Done" />
       </form>
     </article>
   );

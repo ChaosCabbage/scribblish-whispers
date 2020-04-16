@@ -18,13 +18,20 @@ export const DrawingChallenge = ({
   onFinish,
 }: DrawingChallengeProps) => {
   const [png, setPng] = useState("");
+  const [done, setDone] = useState(false);
   const onChange = useCallback(
     (dataURL: string) => {
-      setPng(dataURL);
-      onDrawingChange?.(dataURL);
+      if (!done) {
+        setPng(dataURL);
+        onDrawingChange?.(dataURL);
+      }
     },
-    [onDrawingChange, setPng]
+    [onDrawingChange, setPng, done]
   );
+  const onDone = useCallback(() => {
+    setDone(true);
+    onFinish?.();
+  }, [onFinish, setDone]);
 
   return (
     <article className="challenge">
@@ -42,7 +49,7 @@ export const DrawingChallenge = ({
           height="64"
           src={png}
         />
-        <button className="finished" onClick={onFinish}>
+        <button disabled={done} className="finished" onClick={onDone}>
           I'm finished!
         </button>
       </section>

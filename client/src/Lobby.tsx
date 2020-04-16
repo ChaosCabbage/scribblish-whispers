@@ -31,8 +31,17 @@ export const Lobby = (props: LobbyProps) => (
         ))}
       </ul>
     </section>
-    <section>
-      <button onClick={props.beginGame}>Begin!</button>
-    </section>
+    {props.youAreHost ? (
+      <section>
+        <button
+          disabled={props.otherPlayers.length + 1 < props.minimumPlayers}
+          onClick={props.beginGame}
+        >
+          Begin!
+        </button>
+      </section>
+    ) : (
+      <p>Wait for the host to start the game.</p>
+    )}
   </article>
 );

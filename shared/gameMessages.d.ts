@@ -4,6 +4,16 @@ declare module "@scrawl.io/game-messages" {
   export type Drawing = DataURL;
   export type Caption = string;
 
+  export interface LobbyState {
+    players: UserID[];
+    host: UserID;
+  }
+
+  export interface JoinRoom {
+    room: string;
+    you: string;
+  }
+
   export interface Authored<T> {
     author: UserID;
     content: T;

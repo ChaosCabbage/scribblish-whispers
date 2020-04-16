@@ -104,12 +104,16 @@ export const runGame = async (
           from: turn.currentDrawing.author,
         });
 
+        const currentCaption = {
+          author: player.id,
+          content: answer,
+        };
+
+        turn.chain.results.push([turn.currentDrawing, currentCaption]);
+
         return {
           chain: turn.chain,
-          currentCaption: {
-            author: player.id,
-            content: answer,
-          },
+          currentCaption,
         };
       }
     );
