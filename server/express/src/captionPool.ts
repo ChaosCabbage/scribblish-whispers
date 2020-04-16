@@ -24,4 +24,12 @@ export const captionPool = [
   "Combing your hair with a hedgehog",
   "Frisbee decapitation",
   "Giraffe limbo contest",
+  "Biting off more than you can chew",
+  "Polishing a turd",
+  "Cleaning your pipes",
+  "Cereal killer",
+  "Freezing your own head",
+  "A T-Rex with a brand new handbag",
+  "1950s sex education",
+  "Mittens on a kitten",
 ];
