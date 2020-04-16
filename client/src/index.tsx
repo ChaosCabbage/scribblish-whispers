@@ -16,7 +16,6 @@ const socket =
 
 const roomCode = window.location.pathname.match(/\/(\w+)$/)![1];
 console.log("Room code:", roomCode);
-socket.emit("join-room", roomCode);
 
 ReactDOM.render(
   <React.StrictMode>

@@ -41,16 +41,22 @@ function App({
   const [mode, setMode] = useState<GameState>({
     type: "preload",
   });
-  const [name, setName] = useState("");
+  const [name, setName] = useState(localStorage.name ?? "");
 
   useEffect(() => {
+    socket.emit("join-room", { room: roomCode, name: localStorage.name});
+
     socket.on("fail", (message: string) => {
       setMode({ type: "error", message });
     });
     socket.on("joined-room", ({ you }: Messages.JoinRoom) => {
+      localStorage.name = you;
       setName(you);
     });
-    socket.on("changed-name", setName);
+    socket.on("changed-name", (newName: string) => {
+      localStorage.name = newName;
+      setName(newName)
+    });
     socket.on("lobby-update", (lobby: Messages.LobbyState) => {
       setMode({ type: "lobby", modeProps: lobby });
     });
@@ -67,7 +73,7 @@ function App({
       socket.close();
       setMode({ type: "results", modeProps: payload });
     });
-  }, [socket]);
+  }, [socket, roomCode]);
 
   const gameContent = () => {
     switch (mode.type) {
