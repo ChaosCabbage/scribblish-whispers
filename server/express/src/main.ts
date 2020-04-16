@@ -8,7 +8,7 @@ import fetch from "node-fetch";
 const app = express();
 const server = http.createServer(app);
 const io = socketIO(server);
-const port = process.env.PORT ?? "80";
+const port = process.env.PORT ?? "5385";
 
 const clientPath = path.join(process.cwd(), "..", "client", "build");
 
