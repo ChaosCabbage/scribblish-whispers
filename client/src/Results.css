@@ -1,0 +1,23 @@
+figure {
+  display: table;
+  border: dotted 2px gray;
+}
+figcaption {
+  display: table-caption;
+  caption-side: top;
+}
+figure > blockquote {
+  width: 10vh;
+  height: 10vh;
+}
+figure > img {
+  width: 20vh;
+  height: 20vh;
+}
+
+.chain {
+  border: solid green 1px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}

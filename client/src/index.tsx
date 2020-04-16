@@ -5,7 +5,11 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import io from "socket.io-client";
 
-localStorage.debug = "*";
+if (process.env.NODE_ENV === "development") {
+  localStorage.debug = "*";
+} else {
+  delete localStorage.debug;
+}
 
 const socket =
   process.env.NODE_ENV === "development" ? io("http://localhost:5385") : io();

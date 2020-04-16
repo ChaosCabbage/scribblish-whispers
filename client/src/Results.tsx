@@ -1,5 +1,6 @@
 import React from "react";
 import * as Messages from "@scrawl.io/game-messages";
+import "./Results.css";
 
 const CaptionWithAuthor = (props: Messages.Authored<Messages.Caption>) => (
   <figure>
@@ -16,7 +17,7 @@ const DrawingWithAuthor = (props: Messages.Authored<Messages.Drawing>) => (
 );
 
 const Chain = ({ result }: { result: Messages.GameChain }) => (
-  <section>
+  <section className="chain">
     <CaptionWithAuthor author="Original prompt" content={result.original} />
     {result.results.flatMap(([drawing, caption]) => [
       <DrawingWithAuthor key={drawing.author} {...drawing} />,

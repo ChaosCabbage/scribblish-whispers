@@ -1,8 +1,6 @@
-#draw {
+.imagePrompt {
   width: 70vw;
   height: 70vw;
   max-height: 70vh;
   max-width: 70vh;
-  margin: 0 auto;
-  border: dotted black 1px;
 }

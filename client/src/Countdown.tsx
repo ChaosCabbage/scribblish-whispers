@@ -7,5 +7,5 @@ export const CountdownTimer = (props: { startSeconds: number }) => {
     setTimeout(() => setTime(Math.max(time - 1, 0)), 1000);
   }, [time]);
 
-  return <p>{time}s</p>;
+  return <>{time}s</>;
 };

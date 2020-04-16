@@ -1,6 +1,7 @@
-import React, { useCallback, ChangeEvent } from "react";
+import React, { useCallback, ChangeEvent, useState } from "react";
 import * as Messages from "@scrawl.io/game-messages";
 import { CountdownTimer } from "./Countdown";
+import "./CaptionChallenge.css";
 
 export interface CaptionChallengeProps {
   challenge: Messages.CaptionChallenge;
@@ -15,6 +16,7 @@ export const CaptionChallenge = ({
   onCaptionChange,
   onFinish,
 }: CaptionChallengeProps) => {
+  const [done, setDone] = useState(false);
   const onChange = useCallback(
     (event: ChangeEvent<HTMLInputElement>) =>
       onCaptionChange?.(event.target.value),
@@ -23,23 +25,28 @@ export const CaptionChallenge = ({
   const submit = useCallback(
     (e: React.FormEvent) => {
       e.preventDefault();
+      setDone(true);
       onFinish?.();
     },
-    [onFinish]
+    [onFinish, setDone]
   );
   return (
     <article>
       <section>
         <p>{challenge.from} drew:</p>
-        <div>
+        <div className="imagePrompt">
           <img alt={`${challenge.from}'s drawing`} src={challenge.drawing} />
         </div>
       </section>
       <form onSubmit={submit}>
         <label htmlFor="answer">What is it?</label>
-        <input id="answer" autoFocus onChange={onChange} />
-        <CountdownTimer startSeconds={timeLimitSeconds} />
-        <input type="submit" value="Done" />
+        <input disabled={done} id="answer" autoFocus onChange={onChange} />
+        {done ? undefined : (
+          <>
+            <CountdownTimer startSeconds={timeLimitSeconds} />
+            <input type="submit" value="Done" />
+          </>
+        )}
       </form>
     </article>
   );
