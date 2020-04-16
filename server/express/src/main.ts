@@ -8,9 +8,9 @@ import fetch from "node-fetch";
 const app = express();
 const server = http.createServer(app);
 const io = socketIO(server);
-const port = 5385;
+const port = process.env.PORT ?? "80";
 
-const clientPath = path.join(__dirname, "..", "..", "..", "client", "build");
+const clientPath = path.join(process.cwd(), "..", "client", "build");
 
 createRoom("test", io);
 
