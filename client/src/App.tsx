@@ -45,7 +45,6 @@ function App({
 
   useEffect(() => {
     socket.on("fail", (message: string) => {
-      if (mode.type === "results") return;
       setMode({ type: "error", message });
     });
     socket.on("joined-room", ({ you }: Messages.JoinRoom) => {
@@ -53,21 +52,19 @@ function App({
     });
     socket.on("changed-name", setName);
     socket.on("lobby-update", (lobby: Messages.LobbyState) => {
-      if (mode.type === "results") return;
       setMode({ type: "lobby", modeProps: lobby });
     });
     socket.on(
       "start-caption-challenge",
       (payload: Messages.CaptionChallenge) => {
-        if (mode.type === "results") return;
         setMode({ type: "caption", modeProps: payload });
       }
     );
     socket.on("start-drawing-challenge", (payload: Messages.DrawChallenge) => {
-      if (mode.type === "results") return;
       setMode({ type: "drawing", modeProps: payload });
     });
     socket.on("results", (payload: Messages.GameResult) => {
+      socket.close();
       setMode({ type: "results", modeProps: payload });
     });
   }, [socket]);

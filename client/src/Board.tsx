@@ -28,7 +28,7 @@ export const Board = ({ id = "draw", onDrawingChange: onChange }: Props) => {
   useEffect(() => {
     boardRef.current = new window.DrawingBoard.Board(id, {
       webStorage: false,
-      size: 20,
+      size: 5,
     });
   }, [id]);
 
@@ -41,7 +41,7 @@ export const Board = ({ id = "draw", onDrawingChange: onChange }: Props) => {
     };
 
     onChange(board.blankCanvas);
-    const events = ["board:stopDrawing", "board:reset", "board:mouseOut"];
+    const events = ["board:stopDrawing", "board:reset", "board:mouseOut", "historyNavigation"];
     events.forEach((event) => {
       board.ev.bind(event, emit);
     });
