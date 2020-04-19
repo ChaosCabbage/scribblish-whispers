@@ -5,14 +5,13 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import io from "socket.io-client";
 
+const debugPort = "3353";
 if (process.env.NODE_ENV === "development") {
   localStorage.debug = "*";
-} else {
-  delete localStorage.debug;
 }
 
 const socket =
-  process.env.NODE_ENV === "development" ? io("http://localhost:5385") : io();
+  process.env.NODE_ENV === "development" ? io(`http://localhost:${debugPort}`) : io();
 
 const roomCode = window.location.pathname.match(/\/(\w+)$/)![1];
 console.log("Room code:", roomCode);

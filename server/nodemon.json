@@ -1,6 +1,6 @@
 {
   "env": {
-    "PORT": "5385",
+    "PORT": "3353",
     "DEBUG": "socket.io:client"
   }
 }
