@@ -4,3 +4,8 @@
   max-height: 70vh;
   max-width: 70vh;
 }
+
+.imagePrompt > img {
+  height: 100%;
+  width: 100%;
+}
