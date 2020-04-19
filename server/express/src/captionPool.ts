@@ -35,8 +35,10 @@ export const captionPool = [
   "More melons than you can carry",
   "Deflating an elephant",
   "Bottle-feeding a pig",
-  "A model with hobbit feet",
-  "An incontinent horse",
+  "A supermodel with hobbit feet",
   "Angry potatoes meeting",
   "Bodybuilding toast",
+  "Marrying a tiger",
+  "The octopus who's late to the party",
+  "A baby orchestra",
 ];
