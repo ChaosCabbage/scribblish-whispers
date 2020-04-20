@@ -38,6 +38,7 @@ export const DrawingChallenge = ({
       <section className="caption">
         <p>{challenge.from} wrote:</p>
         <blockquote>{challenge.caption}</blockquote>
+        <p>Draw it!</p>
       </section>
       <Board onDrawingChange={onChange} />
       <section className="preview">
