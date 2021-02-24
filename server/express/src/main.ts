@@ -10,7 +10,8 @@ const server = http.createServer(app);
 const io = socketIO(server);
 const port = process.env.PORT ?? "5385";
 
-const clientPath = path.join(process.cwd(), "..", "client", "build");
+const clientPath =
+  process.env.CLIENT_PATH ?? path.join(process.cwd(), "..", "client", "build");
 
 createRoom("test", io);
 
