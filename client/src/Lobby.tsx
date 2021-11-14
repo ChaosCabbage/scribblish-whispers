@@ -23,7 +23,7 @@ export const Lobby = (props: LobbyProps) => (
           <input
             type="text"
             defaultValue={props.yourName}
-            onBlur={(e) => props.changeName(e.target.value)}
+            onChange={(e) => props.changeName(e.target.value)}
           />
         </li>
         {props.otherPlayers.map((player) => (

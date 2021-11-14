@@ -111,9 +111,10 @@ export class GameRoom {
     });
 
     socket.on("disconnect", () => {
-      delete this.socketIDToName[socket.id];
-      this.playerIDs = this.playerIDs.filter((id) => id !== socket.id);
+      console.log('Disconnected:', socket.id)
       if (!this.started) {
+        delete this.socketIDToName[socket.id];
+        this.playerIDs = this.playerIDs.filter((id) => id !== socket.id);
         this.emitLobbyUpdate();
       }
     });
